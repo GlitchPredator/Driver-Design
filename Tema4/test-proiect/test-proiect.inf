@@ -1,0 +1,62 @@
+;
+; test-proiect.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System ; TODO: specify appropriate Class
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider    = %ManufacturerName%
+CatalogFile = test-proiect.cat
+DriverVer   = ; TODO: set DriverVer in stampinf property pages
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+test-proiect.sys = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName% = Standard,NT$ARCH$.10.0...16299 ; %13% support introduced in build 16299
+
+[Standard.NT$ARCH$.10.0...16299]
+%test-proiect.DeviceDesc% = test-proiect_Device, Root\test-proiect ; TODO: edit hw-id
+
+[test-proiect_Device.NT]
+CopyFiles = File_Copy
+
+[File_Copy]
+test-proiect.sys
+
+;-------------- Service installation
+[test-proiect_Device.NT.Services]
+AddService = test-proiect,%SPSVCINST_ASSOCSERVICE%, test-proiect_Service_Inst
+
+; -------------- test-proiect driver install sections
+[test-proiect_Service_Inst]
+DisplayName    = %test-proiect.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\test-proiect.sys
+
+[test-proiect_Device.NT.Wdf]
+KmdfService = test-proiect, test-proiect_wdfsect
+
+[test-proiect_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE = 0x00000002
+ManufacturerName = "<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "test-proiect Installation Disk"
+test-proiect.DeviceDesc = "test-proiect Device"
+test-proiect.SVCDESC = "test-proiect Service"

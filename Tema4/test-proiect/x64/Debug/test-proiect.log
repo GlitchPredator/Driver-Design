@@ -1,0 +1,12 @@
+﻿  Building 'test-proiect' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Debug\test-proiect.inf
+  Stamping [Version] section with DriverVer=04/08/2025,0.41.39.889
+  Source.c
+  test-proiect.vcxproj -> C:\Users\valen\Desktop\anul IV\Sem. II\PD\Driver-Design\Tema4\test-proiect\x64\Debug\test-proiect.sys
+  Done Adding Additional Store
+  
+SIGNTASK : SignTool error : Access is denied.
+SIGNTASK : SignTool error : An error occurred while attempting to sign: C:\Users\valen\Desktop\anul IV\Sem. II\PD\Driver-Design\Tema4\test-proiect\x64\Debug\test-proiect.sys
+  
+  Number of errors: 1
+  
